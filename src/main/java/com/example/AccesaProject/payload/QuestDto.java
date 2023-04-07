@@ -5,19 +5,18 @@ import lombok.*;
 
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDto {
+public class QuestDto {
     private Integer id;
-    private String username;
+    private String quest;
+    private String answear;
     private Integer tokens;
-    private String password;
-    private List<QuestUserDto> proposedQuests;
-    private List<QuestUserDto> resolvedQuests;
-    private List<BadgeDto> badgeList;
+    private String status;
+    private List<UserQuestDto> userList;
 
 }
