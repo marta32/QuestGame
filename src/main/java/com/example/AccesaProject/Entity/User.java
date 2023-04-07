@@ -27,5 +27,6 @@ public class User {
     private List<Quest> proposedQuests = new ArrayList<Quest>();
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
     private List<Quest> resolvedQuests = new ArrayList<Quest>();
-
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
+    private List<Badge> badgeList = new ArrayList<Badge>();
 }

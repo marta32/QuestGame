@@ -27,4 +27,5 @@ public class Quest {
     private String status;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<User> userList = new ArrayList<User>();
+
 }

@@ -16,4 +16,5 @@ public class Badge {
     private Integer id;
     @Column
     private String name;
+
 }
