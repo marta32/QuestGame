@@ -1,4 +1,4 @@
-package com.example.AccesaProject.Entity;
+package com.example.AccesaProject.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
