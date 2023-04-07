@@ -1,17 +1,18 @@
 package com.example.AccesaProject.Entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
-@Table(name="quests")
+@Table(name = "quests")
 public class Quest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +25,6 @@ public class Quest {
     private Integer tokens;
     @Column
     private String status;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<User> userList = new ArrayList<User>();
 }
