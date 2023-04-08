@@ -1,6 +1,7 @@
 package com.example.AccesaProject.service.impl;
 
 import com.example.AccesaProject.entity.User;
+import com.example.AccesaProject.exception.ResourceNotFoundException;
 import com.example.AccesaProject.mapper.UserMapper;
 import com.example.AccesaProject.payload.ObjectResponse;
 import com.example.AccesaProject.payload.UserDto;
@@ -54,7 +55,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUserById(Integer id) {
-        return null;
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+        return userMapper.mapUserToUserDto(user);
     }
 
     @Override
