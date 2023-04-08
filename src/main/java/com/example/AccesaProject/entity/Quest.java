@@ -18,6 +18,8 @@ public class Quest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
+    private Integer userId;
+    @Column
     private String quest;
     @Column
     private String answear;

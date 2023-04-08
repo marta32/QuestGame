@@ -13,6 +13,7 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class QuestDto {
     private Integer id;
+    private Integer userId;
     private String quest;
     private String answear;
     private Integer tokens;
