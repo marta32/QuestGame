@@ -18,15 +18,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private String username;
+    private String name;
     @Column
     private Integer tokens;
-    @Column
-    private String password;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private List<Quest> proposedQuests = new ArrayList<Quest>();
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
-    private List<Quest> resolvedQuests = new ArrayList<Quest>();
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users")
-    private List<Badge> badgeList = new ArrayList<Badge>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposedByUser")
+    private List<Quest> proposedQuests = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Answer> answerList = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Badge> badgeList = new ArrayList<>();
 }

@@ -64,17 +64,18 @@ public class UserServiceImpl implements UserService {
     public UserDto updateUser(UserDto userDto, Integer id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
-        if (userDto.getUsername() != null){
-            user.setUsername(userDto.getUsername());
-        }
-        if(userDto.getTokens() != null){
-            user.setTokens(userDto.getTokens());
-        }
-        if(userDto.getPassword() != null){
-            user.setPassword(userDto.getPassword());
-        }
-        User updateUser = userRepository.save(user);
-        return userMapper.mapUserToUserDto(updateUser);
+//        if (userDto.getUsername() != null){
+//            user.setUsername(userDto.getUsername());
+//        }
+//        if(userDto.getTokens() != null){
+//            user.setTokens(userDto.getTokens());
+//        }
+//        if(userDto.getPassword() != null){
+//            user.setPassword(userDto.getPassword());
+//        }
+//        User updateUser = userRepository.save(user);
+//        return userMapper.mapUserToUserDto(updateUser);
+        return null;
     }
 
     @Override

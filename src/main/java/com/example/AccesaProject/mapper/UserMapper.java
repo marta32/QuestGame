@@ -14,8 +14,6 @@ public class UserMapper {
     public UserDto mapUserToUserDto(User user) {
         UserDto.UserDtoBuilder userDto = UserDto.builder()
                 .id(user.getId())
-                .username(user.getUsername())
-                .password(user.getPassword())
                 .tokens(user.getTokens());
 
         if (user.getProposedQuests() != null) {
@@ -23,24 +21,23 @@ public class UserMapper {
                     .map(q -> QuestUserDto.builder()
                             .id(q.getId())
                             .quest(q.getQuest())
-                            .answear(q.getAnswear())
                             .tokens(q.getTokens())
                             .status(q.getStatus())
                             .build())
                     .collect(Collectors.toList()));
         }
 
-        if (user.getResolvedQuests() != null) {
-            userDto.resolvedQuests(user.getResolvedQuests().stream()
-                    .map(q -> QuestUserDto.builder()
-                            .id(q.getId())
-                            .quest(q.getQuest())
-                            .answear(q.getAnswear())
-                            .tokens(q.getTokens())
-                            .status(q.getStatus())
-                            .build())
-                    .collect(Collectors.toList()));
-        }
+//        if (user.getResolvedQuests() != null) {
+//            userDto.resolvedQuests(user.getResolvedQuests().stream()
+//                    .map(q -> QuestUserDto.builder()
+//                            .id(q.getId())
+//                            .quest(q.getQuest())
+//                            .answear(q.getAnswear())
+//                            .tokens(q.getTokens())
+//                            .status(q.getStatus())
+//                            .build())
+//                    .collect(Collectors.toList()));
+//        }
         if (user.getBadgeList() != null){
             userDto.badgeList(user.getBadgeList().stream()
                     .map(b -> BadgeDto.builder()
@@ -55,9 +52,9 @@ public class UserMapper {
 
     public User mapUserDtoToUser(UserDto userDto) {
         return User.builder()
-                .username(userDto.getUsername())
+//                .username(userDto.getUsername())
                 .tokens(userDto.getTokens())
-                .password(userDto.getPassword())
+//                .password(userDto.getPassword())
                 .build();
     }
 

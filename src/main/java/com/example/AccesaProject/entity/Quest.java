@@ -18,16 +18,13 @@ public class Quest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column
-    private Integer userId;
-    @Column
     private String quest;
-    @Column
-    private String answear;
     @Column
     private Integer tokens;
     @Column
     private String status;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<User> userList = new ArrayList<User>();
-
+    @ManyToOne
+    private User proposedByUser;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "quest", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Answer> answerList = new ArrayList<>();
 }
