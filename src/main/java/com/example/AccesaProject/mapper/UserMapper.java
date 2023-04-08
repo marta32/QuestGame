@@ -31,7 +31,7 @@ public class UserMapper {
         }
 
         if (user.getResolvedQuests() != null) {
-            userDto.resolvedQuests(user.getProposedQuests().stream()
+            userDto.resolvedQuests(user.getResolvedQuests().stream()
                     .map(q -> QuestUserDto.builder()
                             .id(q.getId())
                             .quest(q.getQuest())
