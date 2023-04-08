@@ -11,3 +11,4 @@ public class BadgeDto {
     private Integer id;
     private String name;
 }
+
