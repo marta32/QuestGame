@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
         Page<User> users = userRepository.findAll(pageable);
         List<User> listOfUsers = users.getContent();
         List<UserDto> listOfDtoUsers = listOfUsers.stream()
-                .map(user ->userMapper.mapUserToUserDto(user)).collect(Collectors.toList());
+                .map(user -> userMapper.mapUserToUserDto(user)).collect(Collectors.toList());
 
         return ObjectResponse.<UserDto>builder()
                 .content(listOfDtoUsers)
@@ -62,7 +62,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(UserDto userDto, Integer id) {
-        return null;
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+        if (userDto.getUsername() != null){
+            user.setUsername(userDto.getUsername());
+        }
+        if(userDto.getTokens() != null){
+            user.setTokens(userDto.getTokens());
+        }
+        if(userDto.getPassword() != null){
+            user.setPassword(userDto.getPassword());
+        }
+        User updateUser = userRepository.save(user);
+        return userMapper.mapUserToUserDto(updateUser);
     }
 
     @Override
