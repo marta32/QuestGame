@@ -38,7 +38,7 @@ public class QuestMapper {
                 .quest(questDto.getQuest())
 //                .answear(questDto.getAnswear())
                 .tokens(questDto.getTokens())
-                .status(questDto.getStatus())
+                .status("OPEN") // todo add ENUM
                 .build();
     }
 

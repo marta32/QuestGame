@@ -20,7 +20,7 @@ public class User {
     @Column
     private String name;
     @Column
-    private Integer tokens;
+    private Integer tokens = 100;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposedByUser")
     private List<Quest> proposedQuests = new ArrayList<>();
