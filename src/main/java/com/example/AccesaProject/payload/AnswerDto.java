@@ -1,5 +1,6 @@
 package com.example.AccesaProject.payload;
 
+import com.example.AccesaProject.utils.AnswerStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -11,7 +12,8 @@ import lombok.*;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AnswerDto {
     private Integer id;
-    private UserDto user;
-    private QuestDto quest;
+    private UserDto userDto;
+    private QuestDto questDto;
     private String questAnswer;
+    private AnswerStatus status;
 }

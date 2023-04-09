@@ -1,5 +1,6 @@
 package com.example.AccesaProject.entity;
 
+import com.example.AccesaProject.utils.QuestStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,8 @@ public class Quest {
     @Column
     private Integer tokens;
     @Column
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private QuestStatus status;
     @ManyToOne
     private User proposedByUser;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "quest", cascade = CascadeType.ALL, orphanRemoval = true)

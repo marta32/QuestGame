@@ -1,5 +1,6 @@
 package com.example.AccesaProject.entity;
 
+import com.example.AccesaProject.utils.AnswerStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,4 +22,7 @@ public class Answer {
     private Quest quest;
     @Column
     private String questAnswer;
+    @Column
+    @Enumerated(EnumType.STRING)
+    private AnswerStatus status;
 }

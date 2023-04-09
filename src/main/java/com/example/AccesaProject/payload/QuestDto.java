@@ -1,5 +1,6 @@
 package com.example.AccesaProject.payload;
 
+import com.example.AccesaProject.utils.QuestStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
@@ -15,7 +16,7 @@ public class QuestDto {
     private Integer id;
     private String quest;
     private Integer tokens;
-    private String status;
+    private QuestStatus status;
     private UserDto userDto;
     private List<AnswerDto> answers;
 

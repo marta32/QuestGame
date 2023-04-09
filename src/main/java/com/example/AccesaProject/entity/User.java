@@ -1,5 +1,6 @@
 package com.example.AccesaProject.entity;
 
+import com.example.AccesaProject.payload.UserDto;
 import jakarta.persistence.*;
 import lombok.*;
 
