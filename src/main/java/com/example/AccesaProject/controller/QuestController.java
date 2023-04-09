@@ -1,14 +1,19 @@
 package com.example.AccesaProject.controller;
 
+import com.example.AccesaProject.entity.security.SecurityUser;
 import com.example.AccesaProject.payload.AnswerDto;
 import com.example.AccesaProject.payload.ObjectResponse;
 import com.example.AccesaProject.payload.QuestDto;
+import com.example.AccesaProject.payload.UserDto;
 import com.example.AccesaProject.service.AnswerService;
 import com.example.AccesaProject.service.QuestService;
 import com.example.AccesaProject.utils.AppConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/quests")
@@ -22,15 +27,24 @@ public class QuestController {
     }
 
     @PostMapping
-    public ResponseEntity<QuestDto> createQuest(@RequestBody QuestDto questDto) {
+    public ResponseEntity<QuestDto> createQuest(@RequestBody QuestDto questDto, Authentication authentication) {
+        questDto.setUserDto(UserDto.builder()
+                .id(((SecurityUser) authentication.getPrincipal()).getId())
+                .build());
         return new ResponseEntity<>(questService.createQuest(questDto), HttpStatus.CREATED);
     }
 
     @PostMapping("/{id}/answer")
-    public ResponseEntity<AnswerDto> createAnswer(@RequestBody AnswerDto answerDto, @PathVariable(name = "id") Integer id) {
+    public ResponseEntity<AnswerDto> createAnswer(@RequestBody AnswerDto answerDto,
+                                                  @PathVariable(name = "id") Integer id, Authentication authentication) {
         answerDto.setQuestDto(QuestDto.builder()
                 .id(id)
                 .build());
+
+        answerDto.setUserDto(UserDto.builder()
+                .id(((SecurityUser) authentication.getPrincipal()).getId())
+                .build());
+
         return new ResponseEntity<>(answerService.createAnswer(answerDto), HttpStatus.CREATED);
     }
 
@@ -50,10 +64,10 @@ public class QuestController {
     }
 
     @PutMapping("/{id}/answer/{answerId}/pickWinner")
-    public ResponseEntity<AnswerDto> pickWinner(@PathVariable(name="id")Integer id,
-                                                 @PathVariable(name="answerId")Integer answerId){
+    public ResponseEntity<AnswerDto> pickWinner(@PathVariable(name = "id") Integer id,
+                                                @PathVariable(name = "answerId") Integer answerId) {
 
-        return new ResponseEntity<>(questService.pickWinner(id,answerId), HttpStatus.OK);
+        return new ResponseEntity<>(questService.pickWinner(id, answerId), HttpStatus.OK);
     }
 
 

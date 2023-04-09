@@ -1,8 +1,9 @@
 package com.example.AccesaProject.entity;
 
 import com.example.AccesaProject.utils.AnswerStatus;
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 
 @Setter

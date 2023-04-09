@@ -1,9 +1,8 @@
 package com.example.AccesaProject.entity;
 
-import com.example.AccesaProject.payload.UserDto;
-import jakarta.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,18 +16,20 @@ import java.util.List;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column
-    private String name;
+    private String username;
     @Column
-    private Integer tokens = 100;
+    private String password;
+    @Column
+    private Integer tokens;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "proposedByUser")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "proposedByUser")
     private List<Quest> proposedQuests = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answerList = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Badge> badgeList = new ArrayList<>();
 }

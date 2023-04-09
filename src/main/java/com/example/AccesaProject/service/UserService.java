@@ -4,7 +4,7 @@ import com.example.AccesaProject.payload.UserDto;
 
 public interface UserService {
     UserDto createUser(UserDto userDto);
-    UserDto getUserById(Integer id);
-    UserDto updateUser(UserDto userDto,  Integer id);
-    void deleteUserById(Integer id);
+    UserDto getUserById(Long id);
+    UserDto updateUser(UserDto userDto,  Long id);
+    void deleteUserById(Long id);
 }

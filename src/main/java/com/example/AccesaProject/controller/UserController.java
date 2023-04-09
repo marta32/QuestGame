@@ -22,19 +22,19 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDto> getBadgeById(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<UserDto> getBadgeById(@PathVariable(name = "id") Long id) {
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateBadge(@RequestBody UserDto UserDto,
-                                                @PathVariable(name = "id") Integer id) {
+                                                @PathVariable(name = "id") Long id) {
         UserDto badgeResponse = userService.updateUser(UserDto, id);
         return new ResponseEntity<>(badgeResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBadge(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<String> deleteBadge(@PathVariable(name = "id") Long id) {
         userService.deleteUserById(id);
         return new ResponseEntity<>("User entity deleted successfully.", HttpStatus.OK);
     }

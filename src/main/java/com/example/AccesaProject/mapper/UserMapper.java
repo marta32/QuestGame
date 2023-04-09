@@ -1,20 +1,21 @@
 package com.example.AccesaProject.mapper;
 
 import com.example.AccesaProject.entity.User;
-import com.example.AccesaProject.payload.BadgeDto;
-import com.example.AccesaProject.payload.QuestUserDto;
 import com.example.AccesaProject.payload.UserDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.stream.Collectors;
 
 @Component
 public class UserMapper {
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+
     public UserDto mapUserToUserDto(User user) {
         UserDto.UserDtoBuilder userDto = UserDto.builder()
                 .id(user.getId())
-                .name(user.getName())
+                .username(user.getUsername())
                 .tokens(user.getTokens());
 
 //        if (user.getProposedQuests() != null) {
@@ -52,7 +53,8 @@ public class UserMapper {
 
     public User mapUserDtoToUser(UserDto userDto) {
         return User.builder()
-                .name(userDto.getName())
+                .username(userDto.getUsername())
+                .password(passwordEncoder.encode(userDto.getPassword()))
                 .tokens(100)
                 .build();
     }

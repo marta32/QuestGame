@@ -24,18 +24,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto getUserById(Integer id) {
+    public UserDto getUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
         return userMapper.mapUserToUserDto(user);
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto, Integer id) {
+    public UserDto updateUser(UserDto userDto, Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
-        if (userDto.getName() != null){
-            user.setName(userDto.getName());
+        if (userDto.getUsername() != null){
+            user.setUsername(userDto.getUsername());
         }
         if(userDto.getTokens() != null){
             user.setTokens(userDto.getTokens());
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserById(Integer id) {
+    public void deleteUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("User", "id",id));
         userRepository.delete(user);

@@ -1,7 +1,7 @@
 package com.example.AccesaProject.entity;
 
 import com.example.AccesaProject.utils.QuestStatus;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;

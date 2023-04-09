@@ -12,8 +12,9 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserDto {
-    private Integer id;
-    private String name;
+    private Long id;
+    private String username;
+    private String password;
     private Integer tokens;
     private List<QuestUserDto> proposedQuests;
     private List<AnswerDto> resolvedQuests;

@@ -19,7 +19,7 @@ public class QuestMapper {
                 .status(quest.getStatus())
                 .userDto(UserDto.builder()
                         .id(quest.getProposedByUser().getId())
-                        .name(quest.getProposedByUser().getName())
+                        .username(quest.getProposedByUser().getUsername())
                         .build());
         if(quest.getAnswerList() != null){
             questDto.answers(quest.getAnswerList().stream()
@@ -29,7 +29,7 @@ public class QuestMapper {
                             .status(a.getStatus())
                             .userDto(UserDto.builder()
                                     .id(a.getUser().getId())
-                                    .name(a.getUser().getName())
+                                    .username(a.getUser().getUsername())
                                     .build())
                             .build())
                     .collect(Collectors.toList()));
