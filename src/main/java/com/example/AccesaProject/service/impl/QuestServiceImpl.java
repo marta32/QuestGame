@@ -1,8 +1,10 @@
 package com.example.AccesaProject.service.impl;
 
 import com.example.AccesaProject.entity.Answer;
+import com.example.AccesaProject.entity.Badge;
 import com.example.AccesaProject.entity.Quest;
 import com.example.AccesaProject.entity.User;
+import com.example.AccesaProject.exception.ActionNotAllowedException;
 import com.example.AccesaProject.exception.NotEnoughTokensException;
 import com.example.AccesaProject.exception.ResourceNotFoundException;
 import com.example.AccesaProject.mapper.AnswerMapper;
@@ -11,10 +13,13 @@ import com.example.AccesaProject.payload.AnswerDto;
 import com.example.AccesaProject.payload.ObjectResponse;
 import com.example.AccesaProject.payload.QuestDto;
 import com.example.AccesaProject.repository.AnswerRepository;
+import com.example.AccesaProject.repository.BadgeRepository;
 import com.example.AccesaProject.repository.QuestRepository;
 import com.example.AccesaProject.repository.UserRepository;
+import com.example.AccesaProject.service.BadgeService;
 import com.example.AccesaProject.service.QuestService;
 import com.example.AccesaProject.utils.AnswerStatus;
+import com.example.AccesaProject.utils.BadgeCode;
 import com.example.AccesaProject.utils.QuestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -38,6 +43,10 @@ public class QuestServiceImpl implements QuestService {
     private QuestMapper questMapper;
     @Autowired
     private AnswerMapper answerMapper;
+    @Autowired
+    private BadgeRepository badgeRepository;
+    @Autowired
+    private BadgeService badgeService;
 
     @Override
     public QuestDto createQuest(QuestDto questDto) {
@@ -50,6 +59,7 @@ public class QuestServiceImpl implements QuestService {
         } else {
             throw new NotEnoughTokensException("You do not have enough tokens to create this quest");
         }
+        badgeService.addBadge(user);
 
         quest.setProposedByUser(user);
         questRepository.save(quest);
@@ -57,7 +67,7 @@ public class QuestServiceImpl implements QuestService {
     }
 
     @Override
-    public QuestDto getQuestById(Integer id) {
+    public QuestDto getQuestById(Long id) {
         Quest quest = questRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Quest", "id", id));
         return questMapper.mapQuestToQuestDto(quest);
@@ -88,15 +98,21 @@ public class QuestServiceImpl implements QuestService {
     }
 
     @Override
-    public AnswerDto pickWinner(Integer questId, Integer answerId) {
+    public AnswerDto pickWinner(Long questId, Long answerId, Long authId) {
         Answer answer = answerRepository.findById(answerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Answer", "id", answerId));
         Quest quest = answer.getQuest();
         User user =  answer.getUser();
 
+        if(!quest.getProposedByUser().getId().equals(authId)){
+            throw new ActionNotAllowedException("Action not allowed.");
+        }
+
         answer.setStatus(AnswerStatus.WINNER);
         quest.setStatus(QuestStatus.CLOSED);
         user.setTokens(answer.getUser().getTokens() + quest.getTokens());
+
+        badgeService.addBadge(user);
 
         answerRepository.save(answer);
         return answerMapper.mapAnswerToAnswerDto(answer);

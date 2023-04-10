@@ -8,7 +8,7 @@ import lombok.*;
 @Getter
 @Builder
 public class QuestUserDto {
-    private Integer id;
+    private Long id;
     private String quest;
     private String answear;
     private Integer tokens;

@@ -1,5 +1,6 @@
 package com.example.AccesaProject.payload;
 
+import com.example.AccesaProject.utils.BadgeCode;
 import lombok.*;
 
 @AllArgsConstructor
@@ -8,7 +9,8 @@ import lombok.*;
 @Getter
 @Builder
 public class BadgeDto {
-    private Integer id;
+    private Long id;
     private String name;
+    private BadgeCode badgeCode;
 }
 

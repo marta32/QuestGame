@@ -28,19 +28,19 @@ public class BadgeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BadgeDto> getBadgeById(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<BadgeDto> getBadgeById(@PathVariable(name = "id") Long id) {
         return new ResponseEntity<>(badgeService.getBadgeById(id), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<BadgeDto> updateBadge(@RequestBody BadgeDto badgeDto,
-                                                @PathVariable(name = "id") Integer id) {
+                                                @PathVariable(name = "id") Long id) {
         BadgeDto badgeResponse = badgeService.updateBadge(badgeDto, id);
         return new ResponseEntity<>(badgeResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteBadge(@PathVariable(name = "id") Integer id) {
+    public ResponseEntity<String> deleteBadge(@PathVariable(name = "id") Long id) {
         badgeService.deleteBadgeById(id);
         return new ResponseEntity<>("Badge entity deleted successfully.", HttpStatus.OK);
     }

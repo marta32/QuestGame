@@ -10,12 +10,14 @@ public class BadgeMapper {
         return BadgeDto.builder()
                 .id(badge.getId())
                 .name(badge.getName())
+                .badgeCode(badge.getBadgeCode())
                 .build();
     }
 
     public Badge mapBadgeDtoToBadge(BadgeDto badgeDto){
         return Badge.builder()
                 .name(badgeDto.getName())
+                .badgeCode(badgeDto.getBadgeCode())
                 .build();
     }
 

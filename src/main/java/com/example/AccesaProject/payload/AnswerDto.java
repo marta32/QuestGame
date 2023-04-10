@@ -11,7 +11,7 @@ import lombok.*;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AnswerDto {
-    private Integer id;
+    private Long id;
     private UserDto userDto;
     private QuestDto questDto;
     private String questAnswer;

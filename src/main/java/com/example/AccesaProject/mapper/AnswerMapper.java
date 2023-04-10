@@ -6,6 +6,7 @@ import com.example.AccesaProject.entity.User;
 import com.example.AccesaProject.payload.AnswerDto;
 import com.example.AccesaProject.payload.QuestDto;
 import com.example.AccesaProject.payload.UserDto;
+import com.example.AccesaProject.utils.AnswerStatus;
 import org.springframework.stereotype.Component;
 
 @Component

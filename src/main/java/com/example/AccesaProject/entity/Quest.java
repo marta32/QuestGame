@@ -17,7 +17,7 @@ import java.util.List;
 public class Quest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column
     private String quest;
     @Column

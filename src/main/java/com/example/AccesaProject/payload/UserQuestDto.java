@@ -9,7 +9,7 @@ import lombok.*;
 @Builder
 public class UserQuestDto {
 
-    private Integer id;
+    private Long id;
     private String username;
     private Integer tokens;
 }

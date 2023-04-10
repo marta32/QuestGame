@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @ManyToOne
     private User user;
     @ManyToOne

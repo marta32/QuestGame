@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-
 @RestController
 @RequestMapping("/api/quests")
 public class QuestController {
@@ -36,7 +34,7 @@ public class QuestController {
 
     @PostMapping("/{id}/answer")
     public ResponseEntity<AnswerDto> createAnswer(@RequestBody AnswerDto answerDto,
-                                                  @PathVariable(name = "id") Integer id, Authentication authentication) {
+                                                  @PathVariable(name = "id") Long id, Authentication authentication) {
         answerDto.setQuestDto(QuestDto.builder()
                 .id(id)
                 .build());
@@ -49,7 +47,7 @@ public class QuestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<QuestDto> getQuestById(@PathVariable Integer id) {
+    public ResponseEntity<QuestDto> getQuestById(@PathVariable Long id) {
         return new ResponseEntity<>(questService.getQuestById(id), HttpStatus.OK);
     }
 
@@ -63,11 +61,13 @@ public class QuestController {
         return questService.getAllQuests(pageNo, pageSize, sortBy, sortDir);
     }
 
-    @PutMapping("/{id}/answer/{answerId}/pickWinner")
-    public ResponseEntity<AnswerDto> pickWinner(@PathVariable(name = "id") Integer id,
-                                                @PathVariable(name = "answerId") Integer answerId) {
+    @PutMapping("/{questId}/answer/{answerId}/pickWinner")
+    public ResponseEntity<AnswerDto> pickWinner(@PathVariable(name = "questId") Long questId,
+                                                @PathVariable(name = "answerId") Long answerId,
+                                                Authentication authentication) {
 
-        return new ResponseEntity<>(questService.pickWinner(id, answerId), HttpStatus.OK);
+        Long authId = ((SecurityUser) authentication.getPrincipal()).getId();
+        return new ResponseEntity<>(questService.pickWinner(questId, answerId, authId), HttpStatus.OK);
     }
 
 

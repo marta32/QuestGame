@@ -6,7 +6,7 @@ import com.example.AccesaProject.payload.QuestDto;
 
 public interface QuestService {
     QuestDto createQuest(QuestDto questDto);
-    QuestDto getQuestById(Integer id);
+    QuestDto getQuestById(Long id);
     ObjectResponse<QuestDto> getAllQuests(Integer pageNo, Integer pageSize, String sortBy, String sortDir);
-    AnswerDto pickWinner(Integer questId, Integer answerId);
+    AnswerDto pickWinner(Long questId, Long answerId, Long authId);
 }
