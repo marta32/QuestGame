@@ -108,12 +108,13 @@ public class QuestServiceImpl implements QuestService {
             throw new ActionNotAllowedException("Action not allowed.");
         }
 
-        answer.setStatus(AnswerStatus.WINNER);
-        quest.setStatus(QuestStatus.CLOSED);
-        user.setTokens(answer.getUser().getTokens() + quest.getTokens());
+        if(quest.getStatus().equals(QuestStatus.OPEN)){
+            answer.setStatus(AnswerStatus.WINNER);
+            quest.setStatus(QuestStatus.CLOSED);
+            user.setTokens(answer.getUser().getTokens() + quest.getTokens());
+        }
 
         badgeService.addBadge(user);
-
         answerRepository.save(answer);
         return answerMapper.mapAnswerToAnswerDto(answer);
     }
