@@ -19,12 +19,12 @@ This project is a Spring Boot REST API for managing a quest game. There are four
 - Git
 
 ## Database diagram
-![Screenshot](https://github.com/marta32/AccesaProject/blob/main/images/Diagram.png)
+![Screenshot](https://github.com/marta32/QuestGame/blob/main/images/Diagram.png)
 
 ## APIs
-![Screenshot](https://github.com/marta32/AccesaProject/blob/main/images/User.png)
+![Screenshot](https://github.com/marta32/QuestGame/blob/main/images/User.png)
 -----
-![Screenshot](https://github.com/marta32/AccesaProject/blob/main/images/Quest.png)
+![Screenshot](https://github.com/marta32/QuestGame/blob/main/images/Quest.png)
 -----
-![Screenshot](https://github.com/marta32/AccesaProject/blob/main/images/Badge.png)
+![Screenshot](https://github.com/marta32/QuestGameblob/main/images/Badge.png)
 -----
