@@ -17,7 +17,7 @@ This project is a Spring Boot REST API for managing a quest game. There are four
 - DBeaver
 - Swagger
 - Git
-
+q
 ## Database diagram
 ![Screenshot](https://github.com/marta32/QuestGame/blob/main/images/Diagram.png)
 
