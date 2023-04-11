@@ -26,5 +26,5 @@ This project is a Spring Boot REST API for managing a quest game. There are four
 -----
 ![Screenshot](https://github.com/marta32/QuestGame/blob/main/images/Quest.png)
 -----
-![Screenshot](https://github.com/marta32/QuestGameblob/main/images/Badge.png)
+![Screenshot](https://github.com/marta32/QuestGame/blob/main/images/Badge.png)
 -----
