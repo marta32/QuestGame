@@ -26,7 +26,7 @@ public class BadgeServiceImpl implements BadgeService {
     @Override
     public BadgeDto createBadge(BadgeDto badgeDto) {
         Badge badge = badgeMapper.mapBadgeDtoToBadge(badgeDto);
-        badgeRepository.save(badge);
+        badge = badgeRepository.save(badge);
         return badgeMapper.mapBadgeToBadgeDto(badge);
     }
 

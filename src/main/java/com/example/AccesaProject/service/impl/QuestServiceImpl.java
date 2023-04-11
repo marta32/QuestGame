@@ -62,7 +62,7 @@ public class QuestServiceImpl implements QuestService {
         badgeService.addBadge(user);
 
         quest.setProposedByUser(user);
-        questRepository.save(quest);
+        quest = questRepository.save(quest);
         return questMapper.mapQuestToQuestDto(quest);
     }
 
@@ -115,7 +115,7 @@ public class QuestServiceImpl implements QuestService {
         }
 
         badgeService.addBadge(user);
-        answerRepository.save(answer);
+        answer = answerRepository.save(answer);
         return answerMapper.mapAnswerToAnswerDto(answer);
     }
 }

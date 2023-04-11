@@ -13,6 +13,7 @@ import java.util.List;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString(exclude = "password")
+@EqualsAndHashCode
 public class UserDto {
     private Long id;
     @NotEmpty(message = "Username may not be empty")

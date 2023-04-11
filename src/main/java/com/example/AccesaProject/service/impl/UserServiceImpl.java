@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto createUser(UserDto userDto) {
         User user = userMapper.mapUserDtoToUser(userDto);
-        userRepository.save(user);
+        user = userRepository.save(user);
         return userMapper.mapUserToUserDto(user);
     }
 
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
         List<User> listOfUsers = users.getContent();
 
         List<UserDto> newContent = listOfUsers.stream()
-                .map(u->userMapper.mapUserToUserDto(u)).collect(Collectors.toList());
+                .map(u -> userMapper.mapUserToUserDto(u)).collect(Collectors.toList());
 
         return ObjectResponse.<UserDto>builder()
                 .content(newContent)
