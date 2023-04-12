@@ -1,4 +1,4 @@
-# QuestGame -  Spring Boot Project
+# QuestGame -  Description
 
 This project is a Spring Boot REST API for managing a quest game. There are four entities
 - User, 
@@ -12,6 +12,33 @@ Also, there are badges for active users. I defined three badges. More exactly:
 - a badge for the first five quest created,
 - a badge for the first three rewarded answer,
 - a badge for reaching 250 tokens.  
+
+## Basic test flow
+1. Create a quest.
+
+   POST: http://44.214.187.174/api/quests
+
+   JSON:
+   ```
+   {
+   "quest":"10+5=?",
+   "tokens": "10"
+   }
+   ``` 
+2. Add answer to that quest. For exemple, add answer 15 to quest with id 1.
+
+   POST: http://44.214.187.174/api/quest/1/answer
+
+   JSON:
+   ```
+   {
+    "questAnswer":"15"
+   }
+   ```
+
+3. Pick a winner answer. For example, pick winner answer with id 1 to quest with id 1. 
+
+   PUT: http://44.214.187.174/api/quests/1/answer/1/pickWinner
 
 ## Tech stack
 
