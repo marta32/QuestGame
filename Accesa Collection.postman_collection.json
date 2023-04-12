@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "fa3138cc-02b0-4d1f-915b-a2985c513105",
+		"name": "Accesa Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23890972"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"sorina\",\n    \"password\": \"sorina30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://44.214.187.174/api/users",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://44.214.187.174/api/users/1",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://44.214.187.174/api/users",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Badges",
+			"item": [
+				{
+					"name": "Get all badgets",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://44.214.187.174/api/badges",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"badges"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quests",
+			"item": [
+				{
+					"name": "Create quest",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"quest\":\"10+5=?\",\n    \"tokens\": \"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://44.214.187.174/api/quests",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"quests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create answer",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"questAnswer\":\"37\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://44.214.187.174/api/quest/18/answer",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"quest",
+								"18",
+								"answer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get quest by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://44.214.187.174/quests/1",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"quests",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all quests",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://44.214.187.174/api/quests",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"quests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PickWinner",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://44.214.187.174/api/quests/18/answer/19/pickWinner",
+							"protocol": "http",
+							"host": [
+								"44",
+								"214",
+								"187",
+								"174"
+							],
+							"path": [
+								"api",
+								"quests",
+								"18",
+								"answer",
+								"19",
+								"pickWinner"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
