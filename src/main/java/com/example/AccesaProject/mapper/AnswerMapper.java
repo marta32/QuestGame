@@ -6,13 +6,12 @@ import com.example.AccesaProject.entity.User;
 import com.example.AccesaProject.payload.AnswerDto;
 import com.example.AccesaProject.payload.QuestDto;
 import com.example.AccesaProject.payload.UserDto;
-import com.example.AccesaProject.utils.AnswerStatus;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AnswerMapper {
 
-    public Answer mapAnswerDtoToAnswer(AnswerDto answerDto){
+    public Answer mapAnswerDtoToAnswer(AnswerDto answerDto) {
         return Answer.builder()
                 .id(answerDto.getId())
                 .questAnswer(answerDto.getQuestAnswer())
@@ -26,7 +25,7 @@ public class AnswerMapper {
                 .build();
     }
 
-    public AnswerDto mapAnswerToAnswerDto(Answer answer){
+    public AnswerDto mapAnswerToAnswerDto(Answer answer) {
         return AnswerDto.builder()
                 .id(answer.getId())
                 .questAnswer(answer.getQuestAnswer())
@@ -41,4 +40,5 @@ public class AnswerMapper {
                         .build())
                 .build();
     }
+
 }

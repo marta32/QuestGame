@@ -16,9 +16,12 @@ public class Badge {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     private String name;
+
     @Column
     @Enumerated(EnumType.STRING)
     private BadgeCode badgeCode;
+
 }

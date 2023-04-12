@@ -1,6 +1,5 @@
 package com.example.AccesaProject.service.impl;
 
-import com.example.AccesaProject.entity.Answer;
 import com.example.AccesaProject.entity.Badge;
 import com.example.AccesaProject.entity.User;
 import com.example.AccesaProject.exception.ResourceNotFoundException;
@@ -31,8 +30,7 @@ public class BadgeServiceImpl implements BadgeService {
     }
 
     @Override
-    public void addBadge(User user) {
-
+    public User addBadge(User user) {
         long countWin = user.getAnswerList().stream()
                 .filter(a -> a.getStatus().equals(AnswerStatus.WINNER))
                 .count();
@@ -66,7 +64,7 @@ public class BadgeServiceImpl implements BadgeService {
                 user.getBadgeList().add(badge);
             }
         }
-
+        return user;
     }
 
     @Override
@@ -99,4 +97,5 @@ public class BadgeServiceImpl implements BadgeService {
                 .orElseThrow(() -> new ResourceNotFoundException("Badge", "id", id));
         badgeRepository.delete(badge);
     }
+
 }

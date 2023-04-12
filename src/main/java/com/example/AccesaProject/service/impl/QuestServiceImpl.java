@@ -1,7 +1,6 @@
 package com.example.AccesaProject.service.impl;
 
 import com.example.AccesaProject.entity.Answer;
-import com.example.AccesaProject.entity.Badge;
 import com.example.AccesaProject.entity.Quest;
 import com.example.AccesaProject.entity.User;
 import com.example.AccesaProject.exception.ActionNotAllowedException;
@@ -19,7 +18,6 @@ import com.example.AccesaProject.repository.UserRepository;
 import com.example.AccesaProject.service.BadgeService;
 import com.example.AccesaProject.service.QuestService;
 import com.example.AccesaProject.utils.AnswerStatus;
-import com.example.AccesaProject.utils.BadgeCode;
 import com.example.AccesaProject.utils.QuestStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -102,13 +100,13 @@ public class QuestServiceImpl implements QuestService {
         Answer answer = answerRepository.findById(answerId)
                 .orElseThrow(() -> new ResourceNotFoundException("Answer", "id", answerId));
         Quest quest = answer.getQuest();
-        User user =  answer.getUser();
+        User user = answer.getUser();
 
-        if(!quest.getProposedByUser().getId().equals(authId)){
+        if (!quest.getProposedByUser().getId().equals(authId)) {
             throw new ActionNotAllowedException("Action not allowed.");
         }
 
-        if(quest.getStatus().equals(QuestStatus.OPEN)){
+        if (quest.getStatus().equals(QuestStatus.OPEN)) {
             answer.setStatus(AnswerStatus.WINNER);
             quest.setStatus(QuestStatus.CLOSED);
             user.setTokens(answer.getUser().getTokens() + quest.getTokens());
@@ -118,4 +116,5 @@ public class QuestServiceImpl implements QuestService {
         answer = answerRepository.save(answer);
         return answerMapper.mapAnswerToAnswerDto(answer);
     }
+
 }

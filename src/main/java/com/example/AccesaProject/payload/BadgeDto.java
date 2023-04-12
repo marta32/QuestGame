@@ -16,5 +16,5 @@ public class BadgeDto {
     private String name;
     @NotEmpty(message = "BadgeCode of badge may not be empty.")
     private BadgeCode badgeCode;
-}
 
+}

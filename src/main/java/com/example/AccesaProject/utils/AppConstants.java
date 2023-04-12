@@ -8,5 +8,4 @@ public class AppConstants {
     public static final String DEFAULT_SORT_DIRECTION = "desc";
     public static final String DEFAULT_SORT_DIRECTION_USER = "desc";
 
-
 }

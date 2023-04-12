@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Getter
 @ResponseStatus(value = HttpStatus.FORBIDDEN)
-public class NotEnoughTokensException extends RuntimeException{
+public class NotEnoughTokensException extends RuntimeException {
 
     private String message;
 
@@ -14,4 +14,5 @@ public class NotEnoughTokensException extends RuntimeException{
         super(message);
         this.message = message;
     }
+
 }

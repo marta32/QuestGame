@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -17,13 +16,18 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     private User user;
+
     @ManyToOne
     private Quest quest;
+
     @Column
     private String questAnswer;
+
     @Column
     @Enumerated(EnumType.STRING)
     private AnswerStatus status;
+
 }

@@ -4,7 +4,6 @@ import com.example.AccesaProject.entity.User;
 import com.example.AccesaProject.exception.ResourceNotFoundException;
 import com.example.AccesaProject.mapper.UserMapper;
 import com.example.AccesaProject.payload.ObjectResponse;
-import com.example.AccesaProject.payload.QuestDto;
 import com.example.AccesaProject.payload.UserDto;
 import com.example.AccesaProject.repository.UserRepository;
 import com.example.AccesaProject.service.UserService;

@@ -25,7 +25,9 @@ public class UserController {
     @Operation(summary = "Create a user.")
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+
         log.info("UserDto: {}", userDto);
+
         return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.CREATED);
     }
 
@@ -38,13 +40,16 @@ public class UserController {
             @RequestParam(value = "sortDir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION_USER, required = false) String sortDir
     ) {
         log.info("Pagination: pageNo = {}, pageSize = {}, sortBy = {}, sortDir = {}", pageNo, pageSize, sortBy, sortDir);
+
         return userService.getAllUsers(pageNo, pageSize, sortBy, sortDir);
     }
 
     @Operation(summary = "Get a user by id.")
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable(name = "id") Long id) {
+
         log.info("UserDto id: {}", id);
+
         return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
     }
 
@@ -52,7 +57,9 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto,
                                               @PathVariable(name = "id") Long id) {
+
         log.info("New userDto: {}, idOfUpdatedUser = {}", userDto, id);
+
         UserDto badgeResponse = userService.updateUser(userDto, id);
         return new ResponseEntity<>(badgeResponse, HttpStatus.OK);
     }
@@ -60,8 +67,11 @@ public class UserController {
     @Operation(summary = "Delete a user by id.")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable(name = "id") Long id) {
+
         log.info("The user with id = {} is deleted.", id);
+
         userService.deleteUserById(id);
         return new ResponseEntity<>("User entity deleted successfully.", HttpStatus.OK);
     }
+
 }

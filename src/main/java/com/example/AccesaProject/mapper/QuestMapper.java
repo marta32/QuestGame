@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class QuestMapper {
     public QuestDto mapQuestToQuestDto(Quest quest) {
+
         QuestDto.QuestDtoBuilder questDto = QuestDto.builder()
                 .id(quest.getId())
                 .quest(quest.getQuest())
@@ -21,9 +22,10 @@ public class QuestMapper {
                         .id(quest.getProposedByUser().getId())
                         .username(quest.getProposedByUser().getUsername())
                         .build());
-        if(quest.getAnswerList() != null){
+
+        if (quest.getAnswerList() != null) {
             questDto.answers(quest.getAnswerList().stream()
-                    .map( a -> AnswerDto.builder()
+                    .map(a -> AnswerDto.builder()
                             .id(a.getId())
                             .questAnswer(a.getQuestAnswer())
                             .status(a.getStatus())
@@ -38,7 +40,7 @@ public class QuestMapper {
         return questDto.build();
     }
 
-    public Quest mapQuestDtoToQuest(QuestDto questDto){
+    public Quest mapQuestDtoToQuest(QuestDto questDto) {
         return Quest.builder()
                 .quest(questDto.getQuest())
                 .tokens(questDto.getTokens())

@@ -1,21 +1,28 @@
 package com.example.AccesaProject;
 
 import com.example.AccesaProject.entity.Answer;
+import com.example.AccesaProject.entity.Badge;
 import com.example.AccesaProject.entity.User;
 import com.example.AccesaProject.payload.UserDto;
 import com.example.AccesaProject.repository.AnswerRepository;
+import com.example.AccesaProject.repository.BadgeRepository;
 import com.example.AccesaProject.repository.UserRepository;
+import com.example.AccesaProject.service.BadgeService;
 import com.example.AccesaProject.service.QuestService;
 import com.example.AccesaProject.service.UserService;
+import com.example.AccesaProject.utils.AnswerStatus;
+import com.example.AccesaProject.utils.BadgeCode;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 
@@ -24,12 +31,16 @@ import static org.mockito.ArgumentMatchers.any;
 class AccesaProjectApplicationTests {
     @MockBean
     private UserRepository userRepository;
-	@MockBean
-	private AnswerRepository answerRepository;
-	@Autowired
-	private QuestService questService;
+    @MockBean
+    private AnswerRepository answerRepository;
+    @Autowired
+    private QuestService questService;
     @Autowired
     private UserService userService;
+    @MockBean
+    private BadgeRepository badgeRepository;
+    @Autowired
+    private BadgeService badgeService;
 
     @Test
     public void testCreateUser() {
@@ -61,23 +72,44 @@ class AccesaProjectApplicationTests {
         Assert.assertEquals(actualResponse, userDtoExpectedResponse);
     }
 
-    public void testPickWinner() {
-		// given
-//		Answer answer = Answer.builder()
-//				.id(25L)
-//				.user(User.builder()
-//						.id(5L)
-//						.username("cleo")
-//						.password("cleo23")
-//						.tokens(145)
-//						.proposedQuests(null)
-//						.badgeList(null)
-//						.build())
-//				.build();
-//		// when
-//		Mockito.when(answerRepository.save(any())).thenReturn(answer);
-//		// then
-    }
+    @Test
+    public void testAddBadge() {
+        // given
 
+        Answer answer1 = Answer.builder()
+                .status(AnswerStatus.WINNER)
+                .build();
+
+        Answer answer2 = Answer.builder()
+                .status(AnswerStatus.WINNER)
+                .build();
+
+        User user = User.builder()
+                .id(10L)
+                .tokens(100)
+                .answerList(List.of(answer1, answer2))
+                .badgeList(new ArrayList<>())
+                .proposedQuests(List.of())
+                .build();
+
+        Badge badge = Badge.builder()
+                .badgeCode(BadgeCode.WIN3)
+                .build();
+
+        User userExpected = User.builder()
+                .id(10L)
+                .tokens(100)
+                .answerList(List.of(answer1, answer2))
+                .badgeList(List.of(badge))
+                .proposedQuests(List.of())
+                .build();
+
+        // when
+        Mockito.when(badgeRepository.findBadgeByBadgeCode(any())).thenReturn(badge);
+        User userActual = badgeService.addBadge(user);
+
+        // then
+        Assert.assertEquals(userActual, userExpected);
+    }
 
 }

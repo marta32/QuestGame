@@ -12,15 +12,19 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "users", indexes = @Index(name="tokens_idx", columnList = "tokens"))
-public class User{
+@Table(name = "users", indexes = @Index(name = "tokens_idx", columnList = "tokens"))
+@EqualsAndHashCode
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(unique = true)
     private String username;
+
     @Column
     private String password;
+
     @Column
     private Integer tokens;
 
@@ -32,4 +36,5 @@ public class User{
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Badge> badgeList = new ArrayList<>();
+
 }

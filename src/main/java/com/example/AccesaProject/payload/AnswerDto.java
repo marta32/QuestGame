@@ -19,4 +19,5 @@ public class AnswerDto {
     @NotEmpty(message = "Quest response may not be empty.")
     private String questAnswer;
     private AnswerStatus status;
+
 }

@@ -21,4 +21,5 @@ public class JpaUserDetailsService implements UserDetailsService {
 
         return new SecurityUser(user);
     }
+
 }

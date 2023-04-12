@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.Collectors;
+
 @Component
 public class UserMapper {
-
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private BadgeMapper badgeMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public UserDto mapUserToUserDto(User user) {
         UserDto.UserDtoBuilder userDto = UserDto.builder()
@@ -18,37 +21,10 @@ public class UserMapper {
                 .username(user.getUsername())
                 .tokens(user.getTokens());
 
-//        if (user.getProposedQuests() != null) {
-//            userDto.proposedQuests(user.getProposedQuests().stream()
-//                    .map(q -> QuestUserDto.builder()
-//                            .id(q.getId())
-//                            .quest(q.getQuest())
-//                            .tokens(q.getTokens())
-//                            .status(q.getStatus())
-//                            .build())
-//                    .collect(Collectors.toList()));
-//        }
-
-//        if (user.getResolvedQuests() != null) {
-//            userDto.resolvedQuests(user.getResolvedQuests().stream()
-//                    .map(q -> QuestUserDto.builder()
-//                            .id(q.getId())
-//                            .quest(q.getQuest())
-//                            .answear(q.getAnswear())
-//                            .tokens(q.getTokens())
-//                            .status(q.getStatus())
-//                            .build())
-//                    .collect(Collectors.toList()));
-//        }
-//        if (user.getBadgeList() != null){
-//            userDto.badgeList(user.getBadgeList().stream()
-//                    .map(b -> BadgeDto.builder()
-//                            .id(b.getId())
-//                            .name(b.getName())
-//                            .build())
-//                    .collect(Collectors.toList()));
-//        }
-            return userDto.build();
+        if (user.getBadgeList() != null) {
+            userDto.badgeList(user.getBadgeList().stream().map(b -> badgeMapper.mapBadgeToBadgeDto(b)).collect(Collectors.toList()));
+        }
+        return userDto.build();
     }
 
     public User mapUserDtoToUser(UserDto userDto) {
