@@ -1,8 +1,17 @@
 # QuestGame -  Spring Boot Project
 
-This project is a Spring Boot REST API for managing a quest game. There are four entities (User, Quest, Answer, Badge). A quest is proposed by a user who has enough tokens. One or many users could answer at the quest, but just one answer is prized. The winner answer is chosen by the user who put the quest. 
+This project is a Spring Boot REST API for managing a quest game. There are four entities
+- User, 
+- Quest, 
+- Answer, 
+- Badge. 
 
-Also, there are badges for active users. I defined three badges. More exactly, a badge for the first five quest created, a badge for the first three rewarded answer and a badge for reaching 250 tokens.  
+A quest is proposed by a user who has enough tokens. One or many users could answer at the quest, but just one answer is prized. The winner answer is chosen by the user who put the quest. 
+
+Also, there are badges for active users. I defined three badges. More exactly:
+- a badge for the first five quest created,
+- a badge for the first three rewarded answer,
+- a badge for reaching 250 tokens.  
 
 ## Tech stack
 
@@ -12,6 +21,11 @@ Also, there are badges for active users. I defined three badges. More exactly, a
 - Maven
 - Hibernate
 - PostgreSQL for the relational database
+
+## Deploy on AWS
+
+- EC2 with Elastic IP
+- RDS with PostgreSQL
 
 ## Other tools
 

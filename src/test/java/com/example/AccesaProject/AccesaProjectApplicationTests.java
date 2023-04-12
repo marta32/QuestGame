@@ -33,18 +33,17 @@ class AccesaProjectApplicationTests {
     private UserRepository userRepository;
     @MockBean
     private AnswerRepository answerRepository;
+    @MockBean
+    private BadgeRepository badgeRepository;
     @Autowired
     private QuestService questService;
     @Autowired
     private UserService userService;
-    @MockBean
-    private BadgeRepository badgeRepository;
     @Autowired
     private BadgeService badgeService;
 
     @Test
     public void testCreateUser() {
-
         // given
         UserDto userDtoRequest = UserDto.builder()
                 .username("marta")
@@ -75,7 +74,6 @@ class AccesaProjectApplicationTests {
     @Test
     public void testAddBadge() {
         // given
-
         Answer answer1 = Answer.builder()
                 .status(AnswerStatus.WINNER)
                 .build();
