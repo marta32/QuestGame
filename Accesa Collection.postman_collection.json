@@ -193,7 +193,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://44.214.187.174/api/quest/18/answer",
+							"raw": "http://44.214.187.174/api/quests/18/answer",
 							"protocol": "http",
 							"host": [
 								"44",
